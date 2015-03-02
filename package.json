@@ -1,0 +1,22 @@
+{
+  "name": "lvl2.js",
+  "version": "0.0.1",
+  "description": "The Javascript / Node library and foundation of lvl2",
+  "author": "Patrick Michael Hopf <phopf.mmt-m2013@fh-salzburg.ac.at>",
+  "homepage": "https://github.com/Wortex17/lvl2.js",
+  "private": true,
+  "license" : "MIT",
+  "dependencies": {
+    "lodash": "^3.3.1",
+    "minimatch": "^2.0.1",
+    "multimatch": "^2.0.0"
+  },
+  "devDependencies": {
+    "chai": "^2.1.0",
+    "mocha": "^2.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url" : "https://github.com/Wortex17/lvl2.js.git"
+  }
+}
