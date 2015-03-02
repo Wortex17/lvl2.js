@@ -85,17 +85,20 @@ describe("ResourceProvider", function() {
     });
 
     describe("Instance w/ specific initial config", function() {
-        var config = {
-            rules: {
-                "dynamicDir/": function () {
-                },
-                "redirect_from/": "redirect_to/",
-                "lockedDir/": false,
-                "unlockedDir/": true,
 
-                "locked | lockedB": false,
-                "locked/unlocked": true
-            }
+        var rules = {};
+        rules["dynamicDir/"] = function () {};
+        rules["lockedDir/"] = false;
+        rules["unlockedDir/"] = true;
+        rules["redirect_from/"] = "redirect_to/";
+        rules[
+        "locked\n" +
+        "lockedB"
+            ] = false;
+        rules["locked/unlocked"] = true;
+
+        var config = {
+            rules: rules
         };
 
         var resProv = new ResourceProvider(testHelpers.appId, config);
@@ -104,19 +107,39 @@ describe("ResourceProvider", function() {
 
             it("has registered a lock for the lockedDir", function () {
                 var rule = resProv.getRule("lockedDir/");
-                expect(rule.action).to.be.equal(false);
+                if(rule === null)
+                    expect(rule).to.be.not.equal(null);
+                else if(rule === undefined)
+                    expect(rule).to.be.not.equal(undefined);
+                else
+                    expect(rule.action).to.be.equal(false);
             });
             it("has registered a lock for the unlockedDir", function () {
                 var rule = resProv.getRule("unlockedDir/");
-                expect(rule.action).to.be.equal(true);
+                if(rule === null)
+                    expect(rule).to.be.not.equal(null);
+                else if(rule === undefined)
+                    expect(rule).to.be.not.equal(undefined);
+                else
+                    expect(rule.action).to.be.equal(true);
             });
             it("has registered a handler for the dynamicDir", function () {
                 var rule = resProv.getRule("dynamicDir/");
-                expect(rule.action).to.be.a('function');
+                if(rule === null)
+                    expect(rule).to.be.not.equal(null);
+                else if(rule === undefined)
+                    expect(rule).to.be.not.equal(undefined);
+                else
+                    expect(rule.action).to.be.a('function');
             });
             it("has registered a reroute target for the redirect_from to redirect_to", function () {
                 var rule = resProv.getRule("redirect_from/");
-                expect(rule.action).to.be.equal('redirect_to/');
+                if(rule === null)
+                    expect(rule).to.be.not.equal(null);
+                else if(rule === undefined)
+                    expect(rule).to.be.not.equal(undefined);
+                else
+                    expect(rule.action).to.be.equal('redirect_to/');
             });
 
         });
@@ -125,22 +148,42 @@ describe("ResourceProvider", function() {
 
             it("shows locked as locked", function () {
                 var rule = resProv.getRulesFor("locked/");
-                expect(rule.action).to.be.equal(false);
+                if(rule === null)
+                    expect(rule).to.be.not.equal(null);
+                else if(rule === undefined)
+                    expect(rule).to.be.not.equal(undefined);
+                else
+                    expect(rule.action).to.be.equal(false);
             });
             it("shows lockedB as locked", function () {
                 var rule = resProv.getRulesFor("lockedB/");
-                expect(rule.action).to.be.equal(false);
+                if(rule === null)
+                    expect(rule).to.be.not.equal(null);
+                else if(rule === undefined)
+                    expect(rule).to.be.not.equal(undefined);
+                else
+                    expect(rule.action).to.be.equal(false);
             });
         });
         describe("Rules for locked/unlocked", function() {
 
             it("shows locked as locked", function () {
                 var rule = resProv.getRulesFor("locked/");
-                expect(rule.action).to.be.equal(false);
+                if(rule === null)
+                    expect(rule).to.be.not.equal(null);
+                else if(rule === undefined)
+                    expect(rule).to.be.not.equal(undefined);
+                else
+                    expect(rule.action).to.be.equal(false);
             });
             it("shows locked/unlocked as unlocked", function () {
                 var rule = resProv.getRulesFor("locked/unlocked/");
-                expect(rule.action).to.be.equal(true);
+                if(rule === null)
+                    expect(rule).to.be.not.equal(null);
+                else if(rule === undefined)
+                    expect(rule).to.be.not.equal(undefined);
+                else
+                    expect(rule.action).to.be.equal(true);
             });
         });
 
